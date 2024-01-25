@@ -1,0 +1,66 @@
+<app-custom-loader *ngIf="isLoading"></app-custom-loader>
+<div *ngIf="!isLoading && user">
+  <div class="modal__header">
+    <span>User Info</span>
+    <div class="modal__header__icons">
+      <div class="header">
+        <custom-header [showHeader]="false"></custom-header>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="modal__content">
+    <div class="user-info-modal">
+      <div class="user-info">
+        <profile-picture class="user-profile"
+                         [attachmentId]="user.profilePictureId"
+                         [title]="user.fullname"
+                         [borderRadius]="'50%'"
+                         [width]="getWidth(user.profilePictureId)"
+                         [username]="user.username"
+        >
+        </profile-picture>
+        <div class="user-details">
+          <span class="fullname">{{ user.fullname }}</span>
+          <span class="username">@{{ user.username }}</span>
+          <span class="email">{{ user.email }}</span>
+          <div class="status">
+            <div *ngIf="onlineUsersService.signalRState() == 'Disconnected' "
+                 class="lastActionTime">
+            <span class="connecting-status-text">
+              Disconnected
+            </span>
+            </div>
+            <div *ngIf="onlineUsersService.signalRState() == 'Connecting' "
+                 class="lastActionTime">
+            <span class="connecting-status-text">
+              Connecting
+            </span>
+            </div>
+            <div
+              *ngIf="onlineUsersService.getLastActiveTime(user.username) && !onlineUsersService.checkOnlineStatus(user.username)&& onlineUsersService.signalRState() == 'Connected'"
+              class="lastActionTime">
+              {{ onlineUsersService.getLastActiveTime(user.username) | timeDifference }}
+            </div>
+            <div
+              *ngIf="!onlineUsersService.getLastActiveTime(user.username) && !onlineUsersService.checkOnlineStatus(user.username)&& onlineUsersService.signalRState() == 'Connected'"
+              class="lastActionTime">
+              Last seen long time ago
+            </div>
+            <div
+              *ngIf="onlineUsersService.checkOnlineStatus(user.username) && onlineUsersService.signalRState() == 'Connected' ">
+              <span class="online-status-text">
+            Online
+            </span>
+                </div>
+                <div *ngIf="onlineUsersService.signalRState() == 'Reconnecting'">
+            <span class="connecting-status-text">
+              Reconnecting
+            </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

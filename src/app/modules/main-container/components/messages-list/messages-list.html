@@ -1,0 +1,63 @@
+
+  <div class="messages-wrapper" [style.background-image]="getBackgroundImage()">
+    <div class="messages" droppable (onFileDropped)="droppedFiles($event)">
+      <conversation-info [chatTitle]="chatTitle"></conversation-info>
+      <div class="lds-spinner top-loading-margin" *ngIf="sharedService.isLoadingOlderMessages">
+        <mat-progress-spinner
+          class="example-margin"
+          [color]="'accent'"
+          [mode]="'indeterminate'">
+        </mat-progress-spinner>
+      </div>
+      <div class="messages__body" (click)="showCurrentMessageContainer()"
+           [style]="!sharedService.isLoadingOlderMessages && (sharedService.isFirstLoading || sharedService.messagesLoading) ? 'opacity: 0' : ''"
+           [style.overflow]="sharedService.isLoadingOlderMessages ? 'hidden' : 'auto'" (scroll)="scroll()" #messagesBody
+           infiniteScroll [infiniteScrollUpDistance]="0.7" [infiniteScrollThrottle]="100" [scrollWindow]="false"
+           [class.stop-scroll]="sharedService.messagesLoading" (scrolledUp)="scrollUp()">
+        <div *ngIf="sharedService.totalMessages" class="bubbles">
+          <div *ngFor="let totalMessage of sharedService.totalMessages; let indexOfTotalMessage = index"
+               id="totalMessage{{indexOfTotalMessage}}" style="display: none">
+            <message id="{{message.id}}" [data]="message" [index]="i" [totalMessagesIndex]="indexOfTotalMessage"
+                      *ngFor="let message of totalMessage ;let i = index"
+                      (navigateToMessage)="navigateToMessage($event)">
+            </message>
+          </div>
+        </div>
+      </div>
+      <div class="lds-spinner"
+           *ngIf="!sharedService.isLoadingOlderMessages &&(sharedService.isFirstLoading || sharedService.messagesLoading)">
+        <mat-progress-spinner
+          class="example-margin"
+          [color]="'accent'"
+          [mode]="'indeterminate'">
+        </mat-progress-spinner>
+      </div>
+      <span class="unread-count" *ngIf="showScrollDownBtn" [ngClass]="sharedService.messagesLoading ? 'disabled' : '' "
+            (click)="scrollEnd()">
+    <mat-icon>arrow_downward</mat-icon>
+  </span>
+      <div class="messages__replay" *ngIf="sharedService.replay">
+        <div>
+          <mat-icon class="close-icon" (click)="sharedService.replay = null">close</mat-icon>
+        </div>
+        <div class="messages__replay__options">
+          <div class="messages__replay__options__title">
+            <document-message [attachment]="sharedService.replay.attachments" ></document-message>
+            <div>
+              <div class="leading-normal name" [innerHTML]="'Reply to ' + sharedService.replay.fullName || sharedService.replay.fullname| customTransform"></div>
+              <div class="leading-normal"
+                   [innerHTML]="sharedService.summerizeReplyMsg(sharedService.replay.content)| customTransform "></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="messages__footer" *ngIf="sharedService.groupInfo">
+        <new-message-input class="new-msg-input" *ngIf="!sharedService.showSelectedMessagesActions"
+                (onSendClicked)="sharedService.fromEditor($event)"></new-message-input>
+        <forward-element *ngIf="sharedService.showSelectedMessagesActions"></forward-element>
+      </div>
+    </div>
+  </div>
+
+
+

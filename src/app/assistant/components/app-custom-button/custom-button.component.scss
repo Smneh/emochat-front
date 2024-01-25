@@ -1,0 +1,44 @@
+.custom-btn {
+  background-color:transparent;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &.green{
+    background-color: var(--green);
+  }
+
+
+  &.full-width {
+    width: 100%;
+  }
+
+  &.large {
+    font-size: 20px;
+    padding: 18px 28px;
+  }
+
+  &.small {
+    font-size: 16px;
+    padding: 10px 20px;
+  }
+}
+
+.button-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap {
+  i {
+    margin-left: 12px; /* Adjust the spacing between icon and text */
+  }
+}

@@ -1,0 +1,148 @@
+.chatRecords__row {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  transition: linear 50ms;
+  border-radius: var(--border-radius);
+  margin: 0 5px;
+  padding: 0 7px;
+
+  &:hover {
+    background-color: rgba(#000000, 0.08);
+  }
+
+  &__info {
+    padding: 12px 0;
+    margin: 0 10px;
+    flex: 1;
+    height: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 1px 0 0 var(--border-color);
+    margin-bottom: 1px;
+
+    .chat-send-time {
+      position: absolute;
+      right: 15px;
+      top: 13px;
+      font-size: small;
+      font-weight: normal;
+      opacity: 0.85;
+      text-align: center;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .seen-icon {
+      color:var(--secondary-color);
+      font-weight: 900;
+      font-size: 20px;
+      margin-right: 3px;
+    }
+    .isSeen{
+      margin-right: -17px;
+    }
+  }
+  &__fullname {
+    font-size: 15px;
+    font-weight: 500;
+    white-space: nowrap;
+    max-width: 17rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    align-items: center;
+    display: flex;
+  }
+  &__type {
+    font-size: 12px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    opacity: 0.7;
+    margin-bottom: -3px;
+    flex: 1;
+    align-items: center;
+    display: flex;
+  }
+  &__content {
+    font-weight: 400;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 16rem;
+    overflow: hidden;
+    opacity: 0.8;
+    color: var(--text-color-secondary);
+
+    &::ng-deep {
+      p {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+    }
+  }
+
+  &::ng-deep {
+    .profile__image {
+      border-radius: 50% !important;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  .margin-left {
+    left: 50px !important;
+  }
+}
+
+.active {
+  background-color: var(--selected) !important;
+  color: white;
+  font-weight: bold;
+  .chatRecords__row__content {
+    color: white;
+  }
+  &::ng-deep {
+    .profile__user-status {
+      box-shadow: 0 0 0 2px var(--main-theme-color);
+    }
+  }
+}
+
+
+.chatRecords__row__content ::ng-deep {
+  * {
+    color: white !important;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+}
+
+.unread-count {
+  background: var(--unread-color);
+  border-radius: 2em;
+  color: #fff;
+  font-size: 9px !important;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+  height: 22px;
+  width: 22px;
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-items: center;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: uppercase;
+  right: 5px;
+  top: 45px;
+}

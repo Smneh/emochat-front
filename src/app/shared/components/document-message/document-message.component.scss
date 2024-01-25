@@ -1,0 +1,22 @@
+.files-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  div.file-item {
+    flex: 20%;
+
+    &::ng-deep img {
+      height: 100% !important;
+      object-fit: cover !important;
+      border-radius: var(--border-radius);
+      max-height: 250px;
+    }
+  }
+
+  div.file-item:first-child {
+    flex: 50% !important;
+  }
+  div.file-item:nth-child(odd) {
+    flex: 33%;
+  }
+}

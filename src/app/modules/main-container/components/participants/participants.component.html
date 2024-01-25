@@ -1,0 +1,58 @@
+<div class="members">
+    <div class="members-count-info">
+        <div class="d-flex align-items-center gap-3">
+            <mat-icon>group</mat-icon>
+            <span>{{groupMembers.length}} member</span>
+        </div>
+      <mat-icon *ngIf="canModify" class="addMember" (click)="addMember()">group_add</mat-icon>
+    </div>
+    <div class="member-row" *ngFor="let member of groupMembers"
+        [ngClass]="userService.userData.username != member.username ? 'rowHover' : '' ">
+        <div class="d-flex align-content-center position-relative gap-3 w-100">
+          <profile-picture
+            (click)="$event.stopPropagation()"
+            [attachmentId]="member.profilePictureId"
+            [width]="'50px'"
+            [username]="member.username"
+            [title]="member.fullName || member.fullname"
+            [borderRadius]="'50%'"
+            >
+          </profile-picture>
+            <div class="member-info">
+                <div class="d-flex align-items-center justify-content-between">
+                    <span class="memberName">{{member.fullName || member.fullname}}</span>
+                </div>
+              <mat-icon class="remove-user"
+                        *ngIf="canModify  && userService.userData.username != member.username"
+                        (click)="removeMember(member.username , $event)">remove_circle_outline</mat-icon>
+              <mat-icon *ngIf="canModify  && userService.userData.username != member.username && !member.isAdmin"
+                        (click)="addAdmin(member.username , $event)" class="set-admin">
+                star_border</mat-icon>
+              <mat-icon *ngIf="canModify  && userService.userData.username != member.username && member.isAdmin"
+                        (click)="removeAdmin(member.username , $event)" class="set-admin">
+                star</mat-icon>
+              <mat-icon *ngIf="member.isAdmin" (click)="removeAdmin(member.username , $event)" class="set-admin">star</mat-icon>
+              <div *ngIf="onlineUsersService.getLastActiveTime(member.username) && !onlineUsersService.checkOnlineStatus(member.username)&& onlineUsersService.signalRState() == 'Connected'"
+                   class="lastActionTime">
+                Last seen {{onlineUsersService.getLastActiveTime(member.username) | timeDifference}}
+              </div>
+              <div *ngIf="!onlineUsersService.getLastActiveTime(member.username) && !onlineUsersService.checkOnlineStatus(member.username)&& onlineUsersService.signalRState() == 'Connected' && userService.userData.username != member.username"
+                   class="lastActionTime">
+                Last seen a long time ago
+              </div>
+              <div
+                *ngIf=" onlineUsersService.checkOnlineStatus(member.username) && onlineUsersService.signalRState() == 'Connected'">
+                    <span class="online-status">
+                        Online
+                    </span>
+              </div>
+              <div
+                *ngIf="onlineUsersService.signalRState() == 'Connected' && userService.userData.username == member.username ">
+                    <span class="online-status">
+                        Online
+                    </span>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>

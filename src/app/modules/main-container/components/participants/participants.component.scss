@@ -1,0 +1,111 @@
+.members {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-bottom: 1rem;
+}
+
+.member-row {
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.rowHover:hover {
+    cursor: default;
+    background-color: var(--selected);
+}
+
+
+.member-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    position: relative;
+}
+
+.lastActionTime {
+    font-size: 11px;
+    opacity: .7;
+}
+
+.online-status {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--online-user);
+}
+
+.members-count-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3px 20px;
+    margin: 10px 0 5px 0;
+
+
+    .mat-icon::ng-deep {
+        i {
+            font-size: 28px !important;
+        }
+    }
+}
+
+.addMember {
+    cursor: pointer;
+
+    &:hover {
+        transition: all .5s;
+        color: var(--light-green);
+    }
+}
+
+.remove-user {
+    position: absolute;
+    right: 15px;
+
+    &::ng-deep {
+        i {
+            font-size: 24px !important;
+        }
+    }
+}
+
+.set-admin{
+  position: absolute;
+  right: 65px;
+
+  &::ng-deep {
+    i {
+      font-size: 24px !important;
+    }
+  }
+
+  &:hover{
+    transition: all .5s;
+    color: var(--yellow);
+  }
+}
+
+
+.remove-user:hover {
+    transition: all .5s;
+    color: var(--light-red2);
+}
+
+.leave-group {
+    position: absolute;
+    right: 10px;
+    color: var(--light-red3);
+    font-weight:500;
+    opacity: .8;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 1;
+      font-weight:700;
+      color: var(--light-red2);
+    }
+}

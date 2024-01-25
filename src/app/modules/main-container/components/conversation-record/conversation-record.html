@@ -1,0 +1,34 @@
+<div class="chatRecords__row"
+     [class.active]=
+       "this.sharedService.selectedChat?.receiverId == chatRecord.receiverId ||
+     this.sharedService.selectedChat?.receiverId == chatRecord.groupId ">
+  <profile-picture *ngIf="this.chatRecord" [width]="'50px'"
+                 [showOnlineStatus]="chatListService.activeTab == 'Chat' || chatListService.activeTab == 'User'"
+                 [title]="chatRecord.title" [attachmentId]="chatRecord.profilePictureId" [username]="chatRecord.receiverId">
+  </profile-picture>
+  <div class="chatRecords__row__info">
+    <div class="chatRecords__row__type" *ngIf="chatListService.activeTab == 'SpecialGroup'">
+      {{ chatRecord.typeTitle }}
+    </div>
+    <div class="chatRecords__row__fullname">
+      {{ chatRecord.title }}
+    </div>
+    <div class="d-flex-center">
+      <div class="chatRecords__row__content" *ngIf="chatRecord.content != '' && chatRecord.content != 'deleted'"
+           [innerHTML]="chatRecord.content | sanitizeEmoji">
+      </div>
+      <div class="chatRecords__row__content" *ngIf="chatRecord.content == '' && chatRecord.attachments!= '-' "
+           [innerHTML]="'File'"></div>
+      <div class="chatRecords__row__content" *ngIf="chatRecord.content != '' && chatRecord.content == 'deleted'"
+           [innerHTML]="'Deleted Message'"></div>
+    </div>
+    <span class="unread-count" *ngIf="chatRecord.unreadCount > 0">
+      {{ chatRecord.unreadCount > 99 ? (99 + '+') : (chatRecord.unreadCount) }}
+    </span>
+    <div class="chat-send-time">
+      <mat-icon class="seen-icon isSeen" *ngIf="chatRecord.regUser == userService.userData.username && chatRecord.isSeen">check</mat-icon>
+      <mat-icon class="seen-icon" *ngIf="chatRecord.regUser == userService.userData.username">check</mat-icon>
+      <span>{{ chatRecord.regDateTime | messageSentTime }}</span>
+    </div>
+  </div>
+</div>

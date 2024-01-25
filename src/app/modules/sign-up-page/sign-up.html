@@ -1,0 +1,48 @@
+<!-- signup.component.html -->
+<div class="signup-container">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" formControlName="username">
+      <div *ngIf="isFieldInvalid('username')" class="error">
+        Username is required.
+      </div>
+    </div>
+
+    <div class="input-container">
+      <label for="password">Password:</label>
+      <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" formControlName="password">
+      <span class="show-password" (click)="showPassword = !showPassword">
+      <mat-icon *ngIf="!showPassword">visibility</mat-icon>
+      <mat-icon *ngIf="showPassword">visibility_off</mat-icon>
+      </span>
+      <div *ngIf="isFieldInvalid('password')" class="error">
+        Password is required.
+      </div>
+    </div>
+
+    <div class="input-container">
+      <label for="fullname">Full Name:</label>
+      <input type="text" id="fullname" name="fullname" formControlName="fullname">
+      <div *ngIf="isFieldInvalid('fullname')" class="error">
+        Full Name is required.
+      </div>
+    </div>
+
+    <div class="input-container">
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" formControlName="email">
+      <div *ngIf="isFieldInvalid('email')" class="error">
+        Email is required and must be a valid email address.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="signupForm.invalid">Sign Up</button>
+  </form>
+  <div class="login-link">
+    <p>Already have an account? <a routerLink="/custom-login">Log in</a></p>
+  </div>
+</div>
+<ng-lottie style="width: 25%;margin-left:125px" class="right-fix" [options]="options"></ng-lottie>
+

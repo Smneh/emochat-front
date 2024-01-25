@@ -1,0 +1,36 @@
+:host {
+  .filebox {
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    //padding: 10px;
+    justify-content: flex-start;
+    cursor: pointer;
+    transition: 250ms all;
+    color: white;
+    &:hover {
+      .filebox__download {
+        transition: 250ms all;
+        box-shadow: 0 0 0 2px #ffffff75;
+      }
+    }
+
+    &__logo {
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+    }
+
+    &__download {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 50%;
+    }
+  }
+}

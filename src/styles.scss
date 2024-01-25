@@ -1,0 +1,29 @@
+@import 'bootstrap/scss/bootstrap';
+@import "assets/styles/variables";
+@import "./assets/styles/context-menu.scss";
+@import "assets/styles/main";
+@import "./assets/styles/emojionearea.css";
+
+html {
+  box-sizing: border-box;
+  position: relative;
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  text-align: right;
+  font-family: var(--font-name) !important;
+  font-size: var(--font-size) !important;
+  background-color: var(--bg-color);
+  color: var(--white);
+  text-align: left !important;
+  direction: ltr !important;
+}
+
+#chat-app {
+  height: 100%;
+  max-width: 1556px;
+  margin: 0 auto;
+}

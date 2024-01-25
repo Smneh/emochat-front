@@ -1,0 +1,16 @@
+@media (max-width: 1024px) {
+  :host {
+    .header {
+      right: 0 !important;
+    }
+  }
+  ::ng-deep{
+    .image-modal{
+      .modal-content{
+        position: unset !important;
+        border-radius: var(--border-radius);
+      }
+    }
+  }
+}
+

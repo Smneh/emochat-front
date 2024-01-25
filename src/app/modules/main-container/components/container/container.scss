@@ -1,0 +1,48 @@
+:host {
+  background: var(--background-color-secondary);
+  display: flex;
+  min-height: 100%;
+}
+
+.container {
+  max-width: 1556px;
+  padding-right:0 !important;
+}
+
+.sidebar {
+  width: 80px;
+  background-color: var(--bg-color);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid var(--dark-gray);
+}
+
+.icon {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.chatList {
+  display: flex;
+  flex-direction: column;
+}
+
+.chat {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--gray);
+}
+
+.messageContainer {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 10px;
+}
+
+

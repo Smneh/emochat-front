@@ -1,0 +1,22 @@
+@media (max-width: 1024px) {
+  :host {
+    display: block !important;
+    flex-direction: column;
+    .category-bar {
+      width: 100% !important;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-around;
+    }
+
+    .category-bar__item {
+      margin-bottom: 0;
+    }
+
+    .chat-list-color {
+      width: 100% !important;
+      height: 100%;
+    }
+  }
+}

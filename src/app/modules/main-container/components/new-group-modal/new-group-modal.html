@@ -1,0 +1,49 @@
+<div class="header">
+  <custom-header>Create A New Group</custom-header>
+</div>
+<div class="group">
+  <div class="group__name">
+    <new-picture (onUploaded)="attachment($event)" [username]="userService.userData.username">
+    </new-picture>
+    <app-custom-input [customPlaceholder]="'Name your group'" [inputValue]="groupName" (onInputChange)="groupName = $event">
+    </app-custom-input>
+  </div>
+</div>
+<div class="users-list-container">
+  <div class="user-list__container">
+    <div class="user-list__container__search-box">
+      <input class="form-control" type="text" [(ngModel)]="usersSearchText"
+             (keyup)="onAllUsersSearchKeyUp($event)" autocomplete="off" placeholder="Search for people to add" />
+    </div>
+    <app-custom-loader *ngIf="membersLoading || loading"></app-custom-loader>
+    <!-- user list -->
+    <div *ngFor="let user of usersSharedService.users; let i = index"
+         [class.selected]="user.isSelected==1"
+         class="user-list__container__user-row">
+      <profile-picture
+        [width]="'45px'"
+        [mark]="selectedUsers.includes(user.username)"
+        [username]="user.username"
+        [title]="user.fullName || user.fullname"
+        [attachmentId]="user.profilePictureId"
+        [borderRadius]="'50%'"
+      >
+      </profile-picture>
+      <div class="user-list__container__user-row__fullname"
+           [style.color]="selectedUsers.includes(user.username) ?'var(--main-theme-color-active)' : ''">
+        {{user.fullname || user.fullName}}
+      </div>
+      <div>
+        <button (click)="onUserClicked(user, i)" class="action-btn" [class.green]="user.isSelected!=1">
+          <mat-icon *ngIf="user.isSelected==1">check_circle</mat-icon>
+          <mat-icon *ngIf="user.isSelected!=1">add</mat-icon>
+          {{ user.isSelected==1 ? 'Added' : 'Add' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <app-custom-button [text]="'Cancel'" (click)="close()" class="butn"></app-custom-button>
+  <app-custom-button [text]="'Create'" (click)="create()" class="butn create" [green]="true"></app-custom-button>
+</div>

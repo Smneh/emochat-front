@@ -1,0 +1,14 @@
+<div id="navbar" class="navbar">
+  <div class="nav-links">
+    <h2 class="title">
+      EmoChat
+    </h2>
+    <span [routerLink]="'/'" class="logo">
+      Logo
+    </span>
+    <user-avatar class="profile" [width]="'45px'" [guid]="userService.userData.profilePictureId" [username]="userService.userData.username"
+                            [title]="userService.userData.fullname" (click)="changeProfile()">
+    </user-avatar>
+    <mat-icon ngbTooltip="LogOut" class="logout" (click)="logoutConfirm()">exit_to_app</mat-icon>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div class="header">
+  <custom-header [showHeader]="true">Upload File</custom-header>
+</div>
+<div class="body" (click)="fileSelect.onClick()">
+  <div class="body__drop">
+    <div class="body__drop__icon" *ngIf="previewFiles.length == 0">
+      <mat-icon>cloud_upload</mat-icon>
+      <span>Click</span>
+    </div>
+    <div class="body__drop__files" *ngIf="previewFiles.length > 0">
+      <new-media (EmptyFileList)="clearList()" [files]="previewFiles"></new-media>
+    </div>
+  </div>
+  <uploaded-files #fileSelect [multiple]="multiple" [fromProfilePicture]="fromProfilePicture" [allowUpload]="allowUpload"
+    [compression]="compression" [accept]="accept" (onFileSelected)="sendToView($event)" (onUploaded)="uploaded($event)">
+  </uploaded-files>
+</div>
+<div class="footer">
+  <div class="buttons-container">
+    <app-custom-button class="cancel-btn" [green]="false" *ngIf="!loading" (click)="close()" [text]="'Cancel'"></app-custom-button>
+    <app-custom-button [green]="true" *ngIf="!loading" (click)="upload()" [text]="'Send'"></app-custom-button>
+    <app-custom-loader *ngIf="loading"></app-custom-loader>
+  </div>
+</div>

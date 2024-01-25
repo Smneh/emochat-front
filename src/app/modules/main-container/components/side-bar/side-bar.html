@@ -1,0 +1,42 @@
+<div class="conversations-list">
+  <div class="chatFeeds" *ngIf="chatListService.chatFeeds">
+    <div class="search-box"></div>
+    <div class="d-flex-center chats-tabs">
+      <span class="tab-item" (click)="setActiveTab('User')" [class.active]="chatListService.activeTab == 'User'">
+        <mat-icon>chat</mat-icon>
+        <span class="tab-item-text" [class.offset-left]="unreadService.unreadData.specialGroup > 0">Chats</span>
+        <span [class.unread-count-rectangle]="unreadService.unreadData.chatGroup > 10"
+          *ngIf="unreadService.unreadData.chatGroup > 0" class="unread-count">
+          {{unreadService.unreadData.chatGroup > 99 ? ((99) + '+') : unreadService.unreadData.chatGroup }}
+        </span>
+      </span>
+      <span class="tab-item " (click)="setActiveTab('Group')" [class.active]="chatListService.activeTab == 'Group'">
+        <mat-icon>group</mat-icon>
+        <span class="tab-item-text" [class.offset-left]="unreadService.unreadData.specialGroup > 0">Groups</span>
+        <span [class.unread-count-rectangle]="unreadService.unreadData.normalGroup > 10"
+          *ngIf="unreadService.unreadData.normalGroup > 0" class="unread-count">
+          {{unreadService.unreadData.normalGroup > 99 ? ((99) + '+') :
+          unreadService.unreadData.normalGroup}}
+        </span>
+      </span>
+    </div>
+    <div class="chat-list-scroll" [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="10" infiniteScroll [scrollWindow]="false"
+      (scrolled)="chatListService.getNextData(searchInput)">
+      <div *ngIf="chatListService.chatFeeds.length > 0">
+        <conversation-record *ngFor="let chatFeed of chatListService.chatFeeds" [data]="chatFeed" (click)="loadMessages(chatFeed)"></conversation-record>
+      </div>
+      <hr *ngIf="chatListService.chatSearchFeed.length > 0 && chatListService.chatFeeds.length > 0">
+      <div *ngIf="chatListService.chatSearchFeed.length > 0">
+        <app-custom-loader *ngIf="chatListService.searchLoading"></app-custom-loader>
+      </div>
+      <div>
+        <new-group-button [selectedTab]="this.chatListService.activeTab"></new-group-button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="messages-container" [class.no-chat-selected]="!this.sharedService.selectedChat">
+  <messages-list *ngIf="this.sharedService.selectedChat"></messages-list>
+  <no-active-participant *ngIf="!this.sharedService.selectedChat"></no-active-participant>
+</div>

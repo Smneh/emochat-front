@@ -1,0 +1,13 @@
+<div class="filebox" (click)="!isReply ? download() : ''">
+  <div class="filebox__logo">
+    <mat-icon> insert_drive_file</mat-icon>
+  </div>
+  <div class="filebox__info">
+    <span>
+      {{fileName}}
+    </span>
+  </div>
+  <div *ngIf="!isReply" class="filebox__download">
+    <mat-icon>arrow_downward</mat-icon>
+  </div>
+</div>

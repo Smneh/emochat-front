@@ -1,0 +1,8 @@
+<div class="h-100">
+  <navbar *ngIf="window.innerWidth > 1024"></navbar>
+  <smll-nav *ngIf="window.innerWidth <= 1024"></smll-nav>
+  <div class="main-container"  [infiniteScrollDistance]="2" [infiniteScrollThrottle]="10" infiniteScroll
+       [scrollWindow]="false">
+    <router-outlet></router-outlet>
+  </div>
+</div>

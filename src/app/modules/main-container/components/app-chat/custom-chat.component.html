@@ -1,0 +1,47 @@
+<div class="chat-page">
+  <div *ngIf="sharedService.searchText != '' && sharedService.loadingChatSearch" class="chat-search-result">
+    <app-custom-loader></app-custom-loader>
+  </div>
+  <div *ngIf="sharedService.chatSearchResult.length > 0 && !sharedService.loadingChatSearch "
+    class=" chat-search-result">
+    <div class="search-tittle">Search Result
+      <hr>
+      <app-custom-loader *ngIf="sharedService.searchResultClick "></app-custom-loader>
+    </div>
+    <div *ngFor="let item of sharedService.chatSearchResult" (click)="onItemClick(item.messageId , item.receiverId)"
+      class="d-flex align-items-center clickable border-b container-fluid">
+      <div class="search-row">
+        <div class="d-flex flex-column gap-2 w-100">
+          <div class="search-content">
+            <span style="font-size: 12px">
+              {{item.regDateTime}}
+            </span>
+            <span style="font-weight: 500;">{{item.fullName}}</span>
+          </div>
+          {{escapeString(item.content)}}
+        </div>
+        <profile-picture
+          [username]="item.regUser"
+          [width]="'50px'"
+          [title]="item.fullName"
+          [attachmentId]="item.profilePictureId"
+          [borderRadius]="'50%'"
+        >
+        </profile-picture>
+      </div>
+    </div>
+    <hr />
+    <div style="padding: 1em;">
+      <button *ngIf="!sharedService.loadingChatSearch" (click)="onLoadMore()" [disabled]="sharedService.loadingChatSearch"
+        type="button" class="btn " style="background-color: #595959;">
+        <span style="color: white;">Load More</span>
+      </button>
+    </div>
+  </div>
+  <div class="chat-container">
+    <div id="chatList" >
+      <side-bar></side-bar>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

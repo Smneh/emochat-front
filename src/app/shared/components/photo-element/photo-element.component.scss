@@ -1,0 +1,19 @@
+img {
+  width: fit-content;
+  height: auto;
+  object-fit: contain;
+  background: var(--background-color-secondary);
+  cursor: pointer;
+  max-width: 100%;
+  border-radius: var(--border-radius);
+  max-height: 420px !important;
+  width: 100%;
+}
+
+.placeholder {
+  height: 250px;
+  background-color: var(--background-color-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

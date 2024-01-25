@@ -1,0 +1,36 @@
+<div >
+  <!-- header -->
+  <div class="header" *ngIf="showHeader">
+    <custom-header [showHeader]="true">{{title}}</custom-header>
+  </div>
+  <!-- main -->
+  <div class="user-list__container">
+    <div class="user-list__container__search-box">
+      <!-- search -->
+      <input input class="form-control" type="text" [(ngModel)]="usersSearchText"
+        (keyup)="onAllUsersSearchKeyUp($event)" autocomplete="off" placeholder="Search" />
+    </div>
+    <app-custom-loader *ngIf="membersLoading || loading"></app-custom-loader>
+    <!-- user list -->
+    <div *ngFor="let user of sharedService.users; let i = index" class="user-list__container__user-row"
+      (click)="onUserClicked(user, i)">
+      <profile-picture
+        [width]="'45px'"
+        [mark]="selectedUsers.includes(user.username)"
+        [username]="user.username"
+        [attachmentId]="user.profilePictureId"
+        [title]="user.fullName || user.fullname"
+        ngbTooltip="{{user.fullname}}"
+        [borderRadius]="'50%'"
+      >
+      </profile-picture>
+      <div class="user-list__container__user-row__fullname"
+           [style.color]="selectedUsers.includes(user.username) ?'var(--main-theme-color-active)' : ''">
+        {{user.fullname || user.fullName}}
+      </div>
+      <div>
+        <mat-icon *ngIf="user.isSelected==1">check_circle</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+<div *ngIf="!imageLoaded" [class.placeholder]="showPlaceholder">
+</div>
+<img *ngIf="_attachmenAddress" [src]="_attachmenAddress" (load)="onloaded()" (click)="isForGroup ? '' : filePreview()">

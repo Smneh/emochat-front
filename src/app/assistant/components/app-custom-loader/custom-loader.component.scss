@@ -1,0 +1,34 @@
+.custom-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .custom-spinner {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 4px solid var(--main-theme-color);
+    border-top: 4px solid transparent;
+    animation: rotate 1s linear infinite;
+  }
+
+  .custom-svg {
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+  }
+
+  &.board-loading {
+    margin-bottom: 10px;
+  }
+
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

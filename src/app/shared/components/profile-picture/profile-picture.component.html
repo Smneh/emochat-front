@@ -1,0 +1,13 @@
+<span class="profile" [style.width]="width">
+  <span *ngIf="_attachmenAddress" class="profile__image"
+        [ngStyle]="{ 'background-image': 'url('+ _attachmenAddress +')'}" (click)="preview ? filePreview() : ''"
+        [style.width]="width" [style.height]="width" [style.border-radius]="borderRadius"
+        [style.box-shadow]="mark ? '0 0 0 2px var(--main-theme-color-active)' : ''"></span>
+  <span [style.background-color]="backgroundColor" class="no-profile" *ngIf="_attachmenAddress == ''"
+        [style.width]="width" [style.height]="width"
+        [style.box-shadow]="mark ? '0 0 0 2px var(--main-theme-color-active)' : ''">
+    {{_title}}
+  </span>
+  <span *ngIf="_username != '' && showOnlineStatus" class="profile__user-status"
+        [class.green]="onlineUsersService.checkOnlineStatus(_username)"></span>
+</span>

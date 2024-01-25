@@ -1,0 +1,15 @@
+<span class="profile" [style.width]="width">
+  <span *ngIf="showProfileImage && imageUrl" class="profile__image"
+        [ngStyle]="{ 'background-image': 'url('+ imageUrl +')'}" (click)="preview? filePreview() : ''"
+        [style.width]="width" [style.height]="width" [style.border-radius]="borderRadius"
+        [style.box-shadow]="mark ? '0 0 0 2px var(--main-theme-color-active)' : ''">
+  </span>
+  <span [style.background-color]="backgroundColor" class="no-profile"
+        *ngIf="!imageUrl || imageUrl == '' || imageUrl == '-'"
+        [style.width]="width" [style.height]="width"
+        [style.box-shadow]="mark ? '0 0 0 2px var(--main-theme-color-active)' : ''">
+    {{_title}}
+  </span>
+  <span *ngIf="_username != '' && showOnlineStatus" class="profile__user-status"
+        [class.green]="onlineUsersService.checkOnlineStatus(_username)"></span>
+</span>

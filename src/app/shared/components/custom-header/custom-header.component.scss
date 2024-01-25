@@ -1,0 +1,33 @@
+:host{
+  width:100%;
+}
+
+.close {
+  position: absolute;
+  right: -45px;
+  top: -10px;
+  color:var(--white)
+}
+
+p::ng-deep {
+    font-size: 17px;
+    margin: 15px;
+    color: var(--main-theme-color);
+}
+
+.close ::ng-deep {
+
+    .clickable.white {
+        background-color: rgb(226 226 226 / 25%);
+
+        &:hover {
+            background-color: rgb(226 226 226 / 25%);
+        }
+    }
+}
+
+.mt-6 {
+    position: absolute;
+    right: -45px;
+    top: 6px;
+}

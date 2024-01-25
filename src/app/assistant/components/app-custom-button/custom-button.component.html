@@ -1,0 +1,10 @@
+<button [class.green]="green" [class.gap]="text.length > 0" class="custom-btn"
+        [ngClass]="{'full-width': isFullWidth, 'large': isLarge, 'small': isSmall }"
+        [disabled]="isDisabled" [style.margin]="margin">
+  <div class="button-content">
+    <ng-content></ng-content>
+    <span class="button-text" [ngStyle]="{'color': textColor}">
+      {{text}}
+    </span>
+  </div>
+</button>

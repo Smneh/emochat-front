@@ -1,0 +1,8 @@
+<div>
+  <div *ngIf="this.selectedTab == 'Group'" (click)="createGroup()" class="float-button">
+    +<mat-icon class="icon">group</mat-icon>
+  </div>
+  <div *ngIf="this.selectedTab == 'User'" (click)="createChat()" class="float-button">
+    +<mat-icon class="icon">chat_bubble_outline</mat-icon>
+  </div>
+</div>

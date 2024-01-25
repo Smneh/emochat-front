@@ -1,0 +1,55 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+
+.mat-icon,
+.no-profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 46px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  color: white;
+  font-size: small;
+}
+
+.profile {
+  background-repeat: no-repeat;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+
+  &__image {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--border-radius);
+    background-size: cover;
+    display: block;
+    cursor: pointer;
+
+  }
+
+  &__image__default {
+    background: var(--background-color-secondary) !important;
+  }
+
+  &__user-status {
+    position: absolute;
+    z-index: 3;
+    bottom: 4px;
+    left: 40px;
+    width: 8px;
+    height: 8px;
+    background: var(--gray);
+    border-radius: 50px;
+    box-shadow: 0 0 0 2px var(--background-color);
+  }
+
+  .green {
+    background-color: var(--green) !important;
+  }
+}

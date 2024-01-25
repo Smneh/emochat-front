@@ -1,0 +1,55 @@
+<search-messages *ngIf="sharedService.isShowSearchHeader"></search-messages>
+<div class="conversation__header" *ngIf="!sharedService.isShowSearchHeader">
+  <div class="conversation__header__div" *ngIf="sharedService.groupInfo">
+    <profile-picture class="group-profile" *ngIf="sharedService.groupInfo"
+      [attachmentId]="sharedService.groupInfo.profilePictureId" [title]="sharedService.groupInfo.title"
+      [borderRadius]="'50px'" [width]="'40px'" [username]="sharedService.groupInfo.receiverId" [preview]="true">
+    </profile-picture>
+    <div class="header-title" (click)="openGroupInfo(sharedService.groupInfo)">
+      <div *ngIf="groupInfoTitle != '-'" class="groupTitle">{{groupInfoTitle.length > 40 ?
+        groupInfoTitle.substring(0, 40) + '...' : groupInfoTitle}}
+      </div>
+      <div *ngIf="groupInfoTitle == '-'" class="groupTitle">
+        {{sharedService.groupInfo.title}}
+      </div>
+      <div *ngIf="sharedService.groupInfo.type == 'User' && onlineUsersService.signalRState() == 'Disconnected' "
+        class="lastActionTime">
+        <span class="connecting-status-text">
+          Disconnected
+        </span>
+      </div>
+      <div *ngIf="sharedService.groupInfo.type == 'User' && onlineUsersService.signalRState() == 'Connecting' "
+        class="lastActionTime">
+        <span class="connecting-status-text">
+          Connecting
+        </span>
+      </div>
+      <div
+        *ngIf="sharedService.groupInfo.type == 'User' && onlineUsersService.getLastActiveTime(sharedService.groupInfo.receiverId) && !onlineUsersService.checkOnlineStatus(sharedService.groupInfo.receiverId)&& onlineUsersService.signalRState() == 'Connected'"
+        class="lastActionTime">
+        {{ onlineUsersService.getLastActiveTime(sharedService.groupInfo.receiverId) | timeDifference }}
+      </div>
+      <div
+        *ngIf="sharedService.groupInfo.type == 'User' && !onlineUsersService.getLastActiveTime(sharedService.groupInfo.receiverId) && !onlineUsersService.checkOnlineStatus(sharedService.groupInfo.receiverId)&& onlineUsersService.signalRState() == 'Connected'"
+        class="lastActionTime">
+        Last seen long time ago
+      </div>
+      <div
+        *ngIf="sharedService.groupInfo.type == 'User' && onlineUsersService.checkOnlineStatus(sharedService.groupInfo.receiverId) && onlineUsersService.signalRState() == 'Connected' ">
+        <span class="online-status"></span>
+        <span class="online-status-text">
+          Online
+        </span>
+      </div>
+      <div *ngIf="sharedService.groupInfo.type == 'User' && onlineUsersService.signalRState() == 'Reconnecting'">
+        <span class="connecting-status-text">
+          Reconnecting
+        </span>
+      </div>
+    </div>
+    <span *ngIf="sharedService.isTyping">is typing</span>
+    <span *ngIf="sharedService.groupInfo.type == 'User'" class="search-span mr-2" ngbTooltip="Search" (click)="openSearch()">
+      <mat-icon>search</mat-icon>
+    </span>
+  </div>
+</div>

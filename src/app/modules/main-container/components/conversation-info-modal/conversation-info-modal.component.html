@@ -1,0 +1,70 @@
+<app-custom-loader *ngIf="isLoading"></app-custom-loader>
+<div *ngIf="!isLoading">
+  <div class="modal__header">
+    <span *ngIf="groupType != 'User'">Group Info</span>
+    <span *ngIf="groupType == 'User'">User Info</span>
+    <div class="modal__header__icons">
+      <div class="header">
+        <custom-header [showHeader]="false"></custom-header>
+      </div>
+      <div ngbDropdown class="d-inline-block" *ngIf="groupType == 'Group'">
+        <mat-icon id="dropdownBasic1" ngbDropdownToggle>more_vert</mat-icon>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu dropdown-menu-right">
+          <button ngbDropdownItem *ngIf="(groupInfo.isCreator || groupInfo.isAdmin) && !isEditable"
+                  (click)="toggleEditMode()">Edit Group</button>
+          <button ngbDropdownItem class="deletebutton" *ngIf="groupInfo.isCreator " (click)="deleteGroupConfirm()">Delete Group</button>
+          <button ngbDropdownItem class="deletebutton" *ngIf="!groupInfo.isCreator && !isEditable" (click)="leaveGroupConfirm()">Leave Group</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal__content">
+    <div class="modal__content__header">
+      <profile-picture *ngIf="!isEditable" class="group-profile"
+                     [attachmentId]="groupInfo.profilePictureId" [title]="groupInfo.title"
+                     [borderRadius]="'50px'" [width]="'60px'" [username]="groupInfo.groupId" [preview]="true">
+      </profile-picture>
+      <new-picture *ngIf="isEditable && groupType != 'User'" (onUploaded)="handleProfileImageChange($event)" [fromGroup]="true" [username]="groupInfo.creator"
+                            [currentProfile]="groupInfo.profilePictureId">
+      </new-picture>
+      <div class="modal__content__header__title">
+        <div *ngIf="!isEditable">
+          <h5>
+            {{groupInfo.title}}
+          </h5>
+          <span class="user-span" *ngIf="groupType == 'User'"
+                >{{groupInfo.creator}}</span>
+        </div>
+        <div *ngIf=" isEditable && groupType != 'User'" class="modal__content__header__title__editable">
+          <span>Group Name</span>
+          <input class="group-title" groupType="text" [(ngModel)]="groupInfo.title">
+        </div>
+      </div>
+    </div>
+    <div *ngIf="groupType != 'User' && !isEditable && groupInfo.description.trim() != ''"
+         class="modal__content__description">
+      <div *ngIf="!isEditable && groupInfo.description.trim() != ''" class="description">
+        <span>Description</span>
+        <p>
+          {{groupInfo.description}}
+        </p>
+      </div>
+    </div>
+    <div *ngIf="groupType != 'User' && isEditable"
+         class="modal__content__description">
+      <div *ngIf="isEditable" class="description">
+        <input placeholder="description (optional)" groupType="text" [(ngModel)]="groupInfo.description">
+      </div>
+    </div>
+    <div *ngIf="isEditable" class="btn-container">
+      <button ngbDropdownItem (click)="toggleEditMode()" class="btn">Cancel</button>
+      <button ngbDropdownItem (click)="updateGroupInfo()" class="btn create">Save</button>
+    </div>
+    <div class="modal__content__members" *ngIf="groupType != 'User' && !isEditable">
+      <participants *ngIf="groupInfo.groupMembers.length > 0" [groupId]="groupInfo.groupId"
+                     [canModify]="groupInfo.isCreator || groupInfo.isAdmin"
+                     [members]="groupInfo.groupMembers"
+      ></participants>
+    </div>
+  </div>
+</div>

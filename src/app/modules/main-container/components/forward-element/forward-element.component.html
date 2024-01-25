@@ -1,0 +1,13 @@
+<div class="d-flex">
+  <div class="flex">
+    <app-custom-button [text]="'Cancel'"
+      (click)="sharedService.reset()"></app-custom-button>
+    <span class="text">
+      {{sharedService.selectedMessages.length}}
+      Selected messages
+    </span>
+  </div>
+  <div class="left">
+    <app-custom-button [text]="'Forward'" (click)="forward()"></app-custom-button>
+  </div>
+</div>

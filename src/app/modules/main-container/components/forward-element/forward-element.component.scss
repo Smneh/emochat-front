@@ -1,0 +1,32 @@
+:host{
+  width: 100%;
+}
+
+.flex{
+  display: flex;
+  align-items: center;
+}
+
+
+button-component{
+  margin-right: 8px;
+}
+
+.left{
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.text{
+  margin-right: 15px;
+  font-weight: bold;
+  opacity: 0.8;
+}
+
+::ng-deep{
+  .custom-height .modal-content {
+    max-height: 650px;
+    overflow: auto;
+  }
+}

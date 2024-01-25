@@ -1,0 +1,53 @@
+/* custom-input.component.scss */
+.custom-input {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+
+  input {
+    border: none;
+    border-radius: 12px;
+    padding: 10px;
+    width: 100%;
+    color: var(--text-color);
+    background-color: var(--bg-lighter);
+    transition: background-color 0.3s ease;
+
+    &:focus ~ .custom-border,
+    &:active ~ .custom-border {
+      width: 100%;
+    }
+  }
+
+  .custom-border {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: var(--main-color);
+    transition: width 0.3s ease;
+  }
+
+  &.has-icon {
+    display: flex;
+    align-items: center;
+
+    input {
+      padding-left: 40px;
+    }
+
+    .custom-icon {
+      position: absolute;
+      left: 10px;
+      color: var(--secondary-color);
+    }
+  }
+}
+
+input {
+  &::placeholder {
+    font-weight: bold;
+    color: var(--light-gray);
+  }
+}

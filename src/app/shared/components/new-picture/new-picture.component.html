@@ -1,0 +1,10 @@
+<div class="profile-image" (click)="onClick()" *ngIf="showProfileImage">
+  <div class="icon">
+    <mat-icon >add_a_photo</mat-icon>
+  </div>
+  <profile-picture *ngIf="currentProfile != '-'" [attachmentId]="currentProfile"></profile-picture>
+  <mat-icon *ngIf="currentProfile == '-'">photo_camera</mat-icon>
+</div>
+
+<input type="file" [id]="'hidden-upload-input'+ uniqeId" (change)="onFileChange($event)" [disabled]="loading"
+  [accept]="accept" hidden />

@@ -1,0 +1,6 @@
+<div class="custom-input" [class.has-icon]="showIcon">
+  <input type="{{inputType}}" class="custom-input-field" #inputElement
+         [placeholder]="customPlaceholder" [value]="inputValue"
+         (input)="inputChanged($event)" (keyup.enter)="onEnterKey($event)" />
+  <span class="custom-border"></span>
+</div>

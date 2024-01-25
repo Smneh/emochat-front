@@ -1,0 +1,44 @@
+<div class="upload-preview__content" [class.upload-preview__content--chat]="chat">
+  <div class="upload-preview__content__file" [class.upload-preview__content__file--chat]="chat"
+    *ngFor="let f of _file; let i = index; let fileLength = count">
+    <div *ngIf="f.format != 'other'" class="upload-preview__content__file__extention">
+      <div class="upload-preview__content__file__extention__icon">
+        <mat-icon (click)="delete(i, $event)">close</mat-icon>
+      </div>
+      <div class="upload-preview__content__file__extention__imagebox" *ngIf="f.format == 'image'">
+        <img *ngIf="mode == 'simple'" [src]="f.data" alt="" width="200">
+        <img *ngIf="mode == 'cover'" [src]="f.data" alt="">
+      </div>
+      <div *ngIf="f.format == 'video'" class="upload-preview__content__file__extention__videobox">
+        <video controls width="250">
+          <source [src]="f.data">
+        </video>
+      </div>
+      <div *ngIf="f.format=='audio'" class="upload-preview__content__file__extention__audiobox">
+        <audio controls>
+          <source [src]="f.data" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+    <div class="upload-preview__content__file__other" [class.upload-preview__content__file__other--chat]="chat"
+      *ngIf="f.format == 'other'">
+      <div class="upload-preview__content__file__other__otherIcon">
+        <mat-icon (click)="delete(i , $event)">close</mat-icon>
+      </div>
+      <div class="upload-preview__content__file__other__otherFile"
+        [class.upload-preview__content__file__other__otherFile--chat]="chat">
+        <div class="upload-preview__content__file__other__otherFile__title">
+          <span> {{f.name.length>10 ? f.name.substring(0, 10) + '...' +
+            f.name.substring(f.name.length -
+            5) : f.name}}</span>
+          <span class="upload-preview__content__file__other__otherFile__title__size">{{f.size}} MB</span>
+        </div>
+        <mat-icon> insert_drive_file</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+<p *ngIf="progress > 0">
+  <ngb-progressbar type="success" textType="white" [value]="progress" [showValue]="true"></ngb-progressbar>
+</p>
+<file-upload-zone #btnUpload class="d-none"></file-upload-zone>

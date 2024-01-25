@@ -1,0 +1,43 @@
+<div class="files-grid">
+  <div *ngFor="let _attachment of files" class="file-item" [class.m-2]="files.length > 1">
+    <!-- image -->
+    <photo-element [isGuid]="isGuid" [attachmentId]="_attachment" *ngIf="
+    _attachment.split('.').pop().includes('jpg')
+   || _attachment.split('.').pop().includes('jfif')
+   || _attachment.split('.').pop().includes('png')
+   || _attachment.split('.').pop().includes('jpeg')
+   || _attachment.split('.').pop().includes('gif')" [showPlaceholder]="true">
+    </photo-element>
+
+    <!-- video -->
+    <video-element [attachmentId]="_attachment" *ngIf="
+    _attachment.split('.').pop().includes('mp4')
+   || _attachment.split('.').pop().includes('mov')
+   || _attachment.split('.').pop().includes('3gp')
+   || _attachment.split('.').pop().includes('avi')
+   || _attachment.split('.').pop().includes('wmv')">
+    </video-element>
+    <!-- audio -->
+    <voice [attachmentId]="_attachment"
+      *ngIf="
+    _attachment.split('.').pop().includes('mp3')
+   || _attachment.split('.').pop().includes('ogg') || _attachment.split('.').pop().includes('ogg') || _attachment.split('.').pop().includes('wav') "> ">
+    </voice>
+    <!-- file -->
+    <document-element [isGuid]="isGuid" [attachmentId]="_attachment" [isReply]="isReply" *ngIf="
+     !_attachment.split('.').pop().includes('mp4')
+  && !_attachment.split('.').pop().includes('mov')
+  && !_attachment.split('.').pop().includes('3gp')
+  && !_attachment.split('.').pop().includes('avi')
+  && !_attachment.split('.').pop().includes('wav')
+  && !_attachment.split('.').pop().includes('wmv')
+  && !_attachment.split('.').pop().includes('mp3')
+  && !_attachment.split('.').pop().includes('ogg')
+  && !_attachment.split('.').pop().includes('jpg')
+  && !_attachment.split('.').pop().includes('png')
+  && !_attachment.split('.').pop().includes('jpeg')
+  && !_attachment.split('.').pop().includes('gif')
+  ">
+    </document-element>
+  </div>
+</div>

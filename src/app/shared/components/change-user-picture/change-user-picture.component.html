@@ -1,0 +1,15 @@
+<div *ngIf="canEdit" class="profile-image" >
+  <label for="fileInput" class="file-input-label" [class]="'large-input-area'">
+    <input id="fileInput" type="file" style="display: none" accept="image/*" (change)="onFileSelected($event)" />
+    <div class="icon">
+      <mat-icon >add_a_photo</mat-icon>
+    </div>
+    <user-avatar *ngIf="showProfileImage"
+                 [width]="'100px'"
+                 [username]="userService.userData.username"
+                 [title]="userService.userData.fullname"
+                 [guid]="userService.userData.profilePictureId"
+                 [preview]="false">
+    </user-avatar>
+  </label>
+</div>

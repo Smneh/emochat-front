@@ -1,0 +1,72 @@
+
+:host {
+  max-height: 80vh;
+  overflow-y: auto;
+  background-color: var(--dark-gray);
+
+  .user-list {
+    &__header {
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--border-color);
+      color: var(--text-color);
+      .mat-icon {
+        &::ng-deep {
+          i:hover {
+            background-color: unset;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+
+    &__container {
+      padding: 15px;
+      //height: 65vh;
+      overflow: auto;
+
+      &__search-box {
+        margin-bottom: 10px;
+        color:var(--white);
+        font-weight: 500;
+        input {
+          &::placeholder {
+            font-weight: 300;
+            color:var(--white);
+          }
+        }
+      }
+
+      &__user-row {
+        display: flex;
+        cursor: pointer;
+        position: relative;
+        margin:  0;
+        padding: 5px 10px;
+        align-items: center;
+        border-radius: var(--border-radius);
+
+        &:hover{
+          background-color: var(--background-color-secondary);
+        }
+
+        &__profile__image {
+          padding: 3px 0;
+        }
+
+        &__fullname {
+          margin-left: 10px;
+          text-align: left;
+          flex: 1;
+        }
+      }
+    }
+  }
+
+  .users-count {
+    text-align: left;
+    padding: 15px;
+  }
+}

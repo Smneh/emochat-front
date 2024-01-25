@@ -1,0 +1,58 @@
+:host {
+  .mat-icon {
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--background-color);
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    .mat-icon {
+      background: #00000070;
+      border-radius: var(--border-radius);
+      padding: 2px;
+
+      &::ng-deep {
+        i:hover {
+          background-color: unset;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .image {
+
+    animation: scale-in 150ms;
+
+    &::ng-deep {
+      img {
+        max-height: 80vh !important;
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+::ng-deep {
+  .image-modal {
+    .modal-dialog {
+      max-width: fit-content !important;
+
+      .modal-content {
+        border: none !important;
+        background: transparent !important;
+        text-align: center;
+      }
+    }
+  }
+}

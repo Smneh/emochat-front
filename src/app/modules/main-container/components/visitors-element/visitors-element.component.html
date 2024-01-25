@@ -1,0 +1,22 @@
+<div class="p-3">
+  <p class="header">Visitors</p>
+  <hr>
+  <div>
+    <div *ngFor="let person of visitors" class="p-2 d-flex-center clickable">
+      <profile-picture [width]="'50px'"
+                       [attachmentId]="person.profilePictureId || person.profileAddress"
+                       [username]="person.username"
+                       [title]="person.fullname || person.fullName"
+                       [borderRadius]="'50%'"
+      ></profile-picture>
+      <div>
+      <span class="ml-2">
+                {{ person.fullname || person.fullName }}
+            </span>
+      <span class="ml-2 seen-date">
+        {{person.dateTime | visitTime}}
+      </span>
+      </div>
+    </div>
+  </div>
+</div>

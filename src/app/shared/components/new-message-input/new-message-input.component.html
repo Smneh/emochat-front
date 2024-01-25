@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="new-message-input.component.scss">
+<div class="footer-container">
+  <div (keydown.enter)="onEnter()" [id]="'parentOfEditor' + guid" class="flex-1 mr-2" (focusout)="removeEnterChar()">
+    <div *ngIf="recordMode " class="timer-content">
+      <div> {{recordedTime}} </div>
+      <div class="circle-blink blink"></div>
+    </div>
+    <textarea class="editor-input form-control" [(ngModel)]="text" [id]="'editorDiv' + guid" placeholder="Message" required></textarea>
+  </div>
+  <button class="btn btn-custom btn-sm file" type="button"
+          *ngIf="text.length ==0 && !recordMode && showAttachment"
+          (click)="openFileSelectModal()">
+    <mat-icon class="white-icon"> attach_file</mat-icon>
+  </button>
+  <button *ngIf="recordMode" class="btn btn-custom btn-sm " type="button" (click)="stopRecording()">
+    <mat-icon class="purple-icon">send</mat-icon>
+  </button>
+  <button *ngIf="cancelBtnMode" class="btn btn-custom btn-sm btn-trash" type="button" (click)="cancelRecording()">
+    <mat-icon class="red-icon">cancel</mat-icon>
+  </button>
+  <button *ngIf="text.length" class="btn btn-custom btn-sm btn-send" ngbTooltip="Ctrl + Enter" type="button"
+          (click)="onEnter()">
+    <mat-icon class="purple-icon">send</mat-icon>
+  </button>
+</div>
+<button *ngIf="!disableRecorderButton && text.length ==0 && !recordMode " class="btn-start-record btn-sm" type="button"
+        (click)="startRecording()">
+  <mat-icon class="white-icon">keyboard_voice</mat-icon>
+</button>

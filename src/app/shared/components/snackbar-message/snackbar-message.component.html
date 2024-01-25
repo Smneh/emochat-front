@@ -1,0 +1,29 @@
+<div class="toast-box {{ToastType}}" [class.pointer]="onClick" [class.open-toast]="showToast" (click)="toastClick()">
+  <span *ngIf="!showConfirm" class="d-flex">
+<!--    <profile-picture *ngIf="image" [attachmentId]="image" [borderRadius]="'50%'" [width]="'49px'"></profile-picture>-->
+    <profile-picture
+      *ngIf="username && username.length > 0 && ToastType == 'chat'"
+      [width]="'45px'"
+      [username]="username"
+      [title]="fullname"
+      [attachmentId]="image"
+      [borderRadius]="'50%'"
+    >
+      </profile-picture>
+    <mat-icon *ngIf="ToastType == 'success'">check_circle</mat-icon>
+  </span>
+  <div class="info">
+    <small style="opacity: 0.6;" *ngIf="fullname"> {{fullname}}</small>
+    <span class="text">
+      {{ToastMessage}}
+    </span>
+  </div>
+  <span class="mr-2 d-flex" *ngIf="showConfirm" style="margin-top: 15px">
+    <span class="btn btn-primary btn-yes" (click)="emitConfirmResult(true);">Yes</span>
+    <span class="btn btn-dark mr-2 btn-no" style="margin-right: 10px;" (click)="emitConfirmResult(false)">No</span>
+  </span>
+</div>
+<audio controls class="d-none" id="confirmSong">
+  <source src="/assets/songs/navigation_selection-complete-celebration.ogg" type="audio/ogg">
+  Your browser does not support the audio element.
+</audio>

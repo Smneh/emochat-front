@@ -1,0 +1,31 @@
+<div class="voice-container">
+  <div class="audio-player">
+    <audio #audioElement class="audio-{{attachmentId}}" (loadeddata)="voiceDataLoaded()" (ended)="voiceEnded()">
+      <source [src]="audioSrc" >
+    </audio>
+    <div class="timeline" (click)="timeLineClicked($event)">
+      <div class="progress" [style.width]="progressValue"></div>
+    </div>
+    <div class="controls">
+<!--      <div class="volume-container">-->
+<!--        <mat-icon>volume_up</mat-icon>-->
+<!--        <div class="volume-button" (click)="volumeButtonClicked()">-->
+<!--          <div class="volume icono-volumeMedium" [class.icono-volumeMedium]="!muted" [class.icono-volumeMute]="muted"></div>-->
+<!--        </div>-->
+<!--        <div class="volume-slider" (click)="sliderClicked($event)">-->
+<!--          <div class="volume-percentage">{{volumePercentage}}</div>-->
+<!--        </div>-->
+<!--      </div>-->
+      <div class="time">
+        <div class="current">{{ currentValue }}</div>
+        <div class="divider">/</div>
+        <div class="length">{{length}}</div>
+      </div>
+      <div class="play-container">
+        <mat-icon *ngIf="!isPlaying" (click)="play()">play_arrow</mat-icon>
+        <mat-icon *ngIf="isPlaying" (click)="play()">pause</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>
+

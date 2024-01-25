@@ -1,0 +1,75 @@
+.modal__header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // color: var(--background-color-secondary);
+  &__icons {
+    display: flex;
+    align-items: center;
+
+    .mat-icon {
+      &::ng-deep {
+        i:hover {
+          background-color: unset;
+          box-shadow: none;
+        }
+      }
+    }
+  }
+}
+
+.modal__content{
+  padding: 15px;
+  display: flex;
+}
+
+.user-info{
+  display:flex;
+}
+
+.user-profile{
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.user-details{
+  align-self:center;
+
+  .fullname{
+    font-size: 24px;
+    font-weight:500;
+  }
+
+  .email, .fullname, .username {
+    display:block;
+  }
+
+  .email{
+    font-size: 16px;
+    font-weight: 200;
+  }
+
+  .username{
+    font-size: 18px;
+    font-weight: 300;
+  }
+}
+
+.online-status-text {
+  color: var(--light-green) !important;
+  font-weight: 500;
+  font-size:15px;
+}
+
+.status{
+  font-size: 12px;
+  opacity: 0.8;
+  margin-top:6px;
+}
+
+hr{
+  margin:0;
+}

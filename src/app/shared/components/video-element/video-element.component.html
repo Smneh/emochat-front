@@ -1,0 +1,8 @@
+<div *ngIf="uniqueId">
+  <video width="250" controls [id]="uniqueId" *ngIf="!disableVideoTag">
+    <source [src]="videoSrc + uniqueId">
+  </video>
+  <video width="250" controls [id]="uniqueId" *ngIf="disableVideoTag">
+    <source [src]="videoSrc + uniqueId">
+  </video>
+</div>

@@ -1,0 +1,122 @@
+:host {
+
+  .buttons-container{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding: 0 15px;
+    margin-bottom: 15px;
+  }
+
+  .cancel-btn{
+    margin-right:10px;
+  }
+
+  .header {
+    // display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .body {
+    padding: 10px;
+
+    &__drop {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 300px;
+      cursor: pointer;
+      line-height: 33px;
+      border: 2px dashed var(--border-color);
+
+      &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        opacity: 0.8;
+        height: 100%;
+        width: 100%;
+
+        .mat-icon {
+          &::ng-deep {
+            i {
+              font-size: 80px;
+            }
+          }
+        }
+      }
+
+      &__files {
+        width: 100%;
+        padding: 0 20px;
+
+        new-media {
+          &::ng-deep {
+            .upload-preview__content {
+              display: flex;
+              align-items: center;
+              overflow: auto;
+            }
+
+            .upload-preview__content__file__extention {
+              padding: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .form-check {
+      width: unset !important;
+
+      input {
+        float: right;
+        margin-right: 0.5em;
+      }
+
+      label {
+        margin-right: 30px;
+      }
+    }
+
+    .btn {
+      padding: 15px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+
+      button-component {
+        margin-left: 6px;
+
+        &::ng-deep {
+          button {
+            color: white;
+          }
+        }
+      }
+
+      .btn {
+        margin-left: 6px;
+        color: var(--main-theme-color);
+        font-weight: 500;
+        background-color: transparent;
+        border-color: none;
+
+        &:hover {
+          color: var(--main-theme-color-dark);
+          background-color: var(--main-theme-color-light);
+        }
+      }
+    }
+  }
+}

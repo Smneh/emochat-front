@@ -1,0 +1,31 @@
+<div class="login-container">
+  <div class="header">
+    <h2>Login</h2>
+  </div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required formControlName="username">
+      <div *ngIf="isFieldInvalid('username')" class="error">
+        Username is required.
+      </div>
+    </div>
+    <div class="input-container">
+      <label for="password">Password:</label>
+      <input [type]="showPassword ? 'text' : 'password'" id="password" name="password" required formControlName="password">
+      <span class="show-password" (click)="showPassword = !showPassword">
+      <mat-icon *ngIf="!showPassword">visibility</mat-icon>
+      <mat-icon *ngIf="showPassword">visibility_off</mat-icon>
+      </span>
+      <div *ngIf="isFieldInvalid('password')" class="error">
+        Password is required.
+      </div>
+    </div>
+    <button type="submit" [disabled]="isFieldInvalid('password') && isFieldInvalid('username')">Login</button>
+  </form>
+  <div class="signup-link">
+    <p>Don't have an account? <a routerLink="/signup" >Sign up</a></p>
+  </div>
+  <snackbar-message></snackbar-message>
+</div>
+<ng-lottie style="width: 25%;margin-left:125px" class="right-fix" [options]="options"></ng-lottie>

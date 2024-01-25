@@ -1,0 +1,3 @@
+<input type="file" [id]="'hidden-upload-input'+ uniqeId" name="hidden-upload-input" (change)="onFileChange($event)" [disabled]="loading"
+  [multiple]="multiple" [accept]="accept" hidden />
+<app-custom-loader *ngIf="loading"></app-custom-loader>

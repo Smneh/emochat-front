@@ -1,0 +1,5 @@
+<mat-icon class="close" [class.mt-6]="mt6" (click)="close()">close</mat-icon>
+<p *ngIf="showHeader">
+  <ng-content></ng-content>
+</p>
+<hr *ngIf="showHeader">

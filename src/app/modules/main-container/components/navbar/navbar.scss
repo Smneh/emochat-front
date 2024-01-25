@@ -1,0 +1,87 @@
+:host{
+  width:100%;
+  display: block;
+  height:80px;
+  box-shadow: 0 1px 0 0 var(--dark-gray);
+}
+
+.profile:hover{
+   cursor:pointer;
+}
+
+.navbar {
+  background: var(--bg-color) !important;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 80px;
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  padding: 0 20px;
+  transition: ease-in-out 200ms;
+  top: 0;
+
+  .center {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    color: #fff;
+    margin-right: 8px;
+  }
+
+  .logo {
+    cursor: pointer;
+    text-align: center;
+    margin-right: 5px;
+
+    &:hover {
+      opacity: 0.95;
+    }
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    li.navItem:focus,
+    a:focus,
+    span:focus {
+      outline: none !important;
+    }
+
+    &>li.navItem {
+      display: flex;
+      align-items: center;
+      list-style: none;
+      position: relative;
+      min-width: 44px;
+      height: 44px;
+      justify-content: center;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+        background-color: rgba(255, 255, 255, 0.123);
+      }
+    }
+  }
+
+  .logout{
+    margin-left: auto;
+    font-size: 34px;
+    height: 31px;
+    width: 45px;
+    cursor: pointer;
+
+    &:hover{
+      color:var(--light-red);
+    }
+  }
+}

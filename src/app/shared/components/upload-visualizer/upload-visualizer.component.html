@@ -1,0 +1,22 @@
+<div class="upload-area">
+  <div class="cropper-wrapper">
+    <image-cropper
+      [imageChangedEvent]="file"
+      [maintainAspectRatio]="true"
+      [cropperMinWidth]="128"
+      [onlyScaleDown]="true"
+      [roundCropper]="true"
+      [alignImage]="'center'"
+      style="max-height: 300px"
+      imageAltText="User Profile Picture"
+      format="jpeg"
+      [resizeToWidth]="800"
+      output="blob"
+      (imageCropped)="imageCropped($event)"
+    ></image-cropper>
+  </div>
+  <div class="preview">
+    <button class="upload-btn" (click)="Upload()">Confirm</button>
+    <button class="close-btn" (click)="close()">Close</button>
+  </div>
+</div>

@@ -1,0 +1,88 @@
+/* signup.component.css or signup.component.scss */
+:host {
+  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 15px 0px;
+}
+
+.signup-container {
+  width: 380px;
+  //margin: auto;
+  padding: 20px;
+  border: 1px solid var(--gray);
+  border-radius: 5px;
+  box-shadow: 0 0 10px var(--gray); /* Purple box shadow */
+  color: #fff; /* White text color */
+}
+
+.error{
+  color: var(--light-red);
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 10px 0 5px;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid var(--dark-gray); /* Purple border color */
+  border-radius: 3px;
+  color: #fff; /* White text color */
+  padding-right: 40px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: var(--main-color); /* Lighter purple button color */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--main-darker-color); /* Darker purple on hover */
+}
+
+.login-link {
+  margin-top: 15px;
+  text-align: center;
+}
+
+a {
+  color: var(--main-color);
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--main-light-color); /* Light blue on hover */
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  position:relative;
+}
+
+.mat-icon{
+  cursor:pointer;
+  position: absolute;
+  right: 12px;
+  top: 52px;
+}

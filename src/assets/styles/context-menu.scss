@@ -1,0 +1,65 @@
+.right-click-menu {
+  position: fixed;
+  background: var(--background-color);
+  padding: 0 2px;
+  color: var(--text-color);
+  box-shadow: 0 0 20px -12px #000 , inset 0 0 0 2px var(--dark-gray);
+  min-width: 180px;
+  z-index: 10;
+  border-radius: var(--border-radius);
+  line-height: 35px;
+  direction: rtl;
+  text-align: right;
+}
+
+.right-click-item{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 15px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  cursor: pointer;
+  &:hover {
+    background-color: #f2f2f2;
+  }
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  direction: rtl;
+  cursor: default;
+  letter-spacing: 0.5px;
+  font-size: medium;
+  font-weight: 400;
+  padding-right: 10px;
+
+  .mat-icon {
+    margin-right: 15px;
+  }
+
+  span{
+    font-size: medium;
+    font-weight: 400;
+  }
+  &:hover {
+    background-color: var(--background-color-secondary);
+  }
+}
+
+.line {
+  border-bottom: 1px solid var(--border-color);
+  padding: 0;
+}
+
+@keyframes openRightClickMenu {
+  0% {
+    transform: translateY(-20px) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 1;
+  }
+}

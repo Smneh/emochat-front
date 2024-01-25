@@ -1,0 +1,134 @@
+<div class="unread-messages" style="position: unset !important" #unreadsLabel
+  *ngIf="sharedService.groupInfo.firstUnreadMessageId == item.id">
+  <span class="unread-span"> Unread Messages </span>
+</div>
+<div *ngIf="!previousMessageIsToday" class="date-separator">
+  <span> {{date}} </span>
+</div>
+<div class="message__row" [id]="item.itemId"
+  [class.isSelf]="isSelf" [class.hide-row-info]="previousMessageIsSelf && previousMessageIsToday"
+  [class.single-row]="item.content.length <= 55 && item.attachments == '-' && !item.content.includes('%0A')">
+
+  <input class="form-check-input" *ngIf="sharedService.showSelectedMessagesActions" (click)="selectMessage()" type="checkbox"
+    [(ngModel)]="item.isSelected">
+  <profile-picture
+    class="profile-pic"
+    [class.not-visible]="nextMessageIsToday && nextMessageHasSameRegUser"
+    *ngIf="sharedService.groupInfo.type == 'Group' && !isSelf && !item.isFirst"
+   [title]="item.fullName"
+   [borderRadius]="'50%'" [width]="'40px'"
+   [attachmentId]="item.profileAddress" [username]="item.regUser">
+  </profile-picture>
+  <div class="flex-1 d-flex">
+    <div
+      [class.set-background-for-attachment-isSelf]="item.content != 'deleted' && item.attachments.length > 3 && item.content.length > 0 && isSelf"
+      [class.set-background-for-attachment-isNotSelf]="item.content != 'deleted' && item.attachments.length > 3 && item.content.length > 0 && !isSelf"
+      class="chat-item"
+      (contextmenu)="onContextMenu($event)"
+      (mouseleave)="onMouseLeave()"
+      [class]="isSelf ? 'options' : 'options-right'"
+      [class.can-have-tail]="(!nextMessageHasSameRegUser || !nextMessageIsToday) && !item.isFirst"
+      *ngIf="!item.isObsolete"
+      [class.isFirst]="item.isFirst">
+      <div ngbDropdown container="body" [open]="contextMenuOpen">
+        <div ngbDropdownMenu aria-labelledby="dropdownMenu" class="menu" *ngIf="contextMenuOpen">
+          <div ngbDropdownItem *ngIf="item.isSelf && this.chatListService.activeTab == 'Group'" (click)="openVisitLog()">
+            <mat-icon [class]="isSelf ? 'left' : 'right'">remove_red_eye</mat-icon>
+            <span>Visitors</span>
+          </div>
+          <div ngbDropdownItem (click)="forward(item)">
+            <mat-icon [class]="isSelf ? 'left' : 'right'">arrow_forward</mat-icon>
+            <span>Forward</span>
+          </div>
+          <div ngbDropdownItem (click)="replayMessage(item)">
+            <mat-icon [class]="isSelf ? 'left' : 'right'">reply</mat-icon>
+            <span>Reply</span>
+          </div>
+          <div ngbDropdownItem *ngIf="item.regUser == username" (click)="deleteMessage(item)">
+            <mat-icon [class]="isSelf ? 'left' : 'right'">delete_outline</mat-icon>
+            <span>Delete</span>
+          </div>
+          <div ngbDropdownItem (click)="copyMessage(item)">
+            <mat-icon [class]="isSelf ? 'left' : 'right'">file_copy</mat-icon>
+            <span>Copy</span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="item.messageTypeId > 1 && item.replyMessage" class="message__row__replay"
+        (click)="navigateToMessages(item.replyMessage)">
+        <div class="message__row__replay__info">
+          <div class="fullname" [innerHTML]="item.replyMessage.fullName| customTransform">
+          </div>
+        </div>
+        <div class="message__row__replay__content">
+          <document-message [attachment]="item.replyMessage.attachments ? item.replyMessage.attachments : item.replyMessage.attachments"
+            [isReply]="true"
+                            [style.width]="item.replyMessage.attachments && item.replyMessage.attachments != '-' ? '200px': ''"></document-message>
+          <div
+            [innerHTML]="sharedService.summerizeReplyMsg(item.replyMessage.content.length < 40 ? item.replyMessage.content : item.replyMessage.content.substring(0,40) + '...')|customTransform  | sanitizeEmoji">
+          </div>
+        </div>
+      </div>
+      <div *ngIf="sharedService.groupInfo.type != 'User' && !isSelf && !item.isFirst" class="fullName bold" [innerHTML]="item.fullName ? item.fullName : item.fullname">
+      </div>
+      <div *ngIf="item.attachments.length==0"
+        class="content"
+        [innerHTML]="item.content | customTransform  | customLinkify  " [id]="'message-content' + item.messageId"
+        ></div>
+      <document-message *ngIf="item.content != 'deleted' "
+                        [attachment]="item.attachments"></document-message>
+      <div *ngIf="item.attachments.length!=0"
+        class="content"
+        [innerHTML]="item.content | customTransform | customLinkify  " [id]="'message-content' + item.messageId"
+        ></div>
+      <div class="bottom-icons" *ngIf="!item.isFirst">
+        <span class="delivery-icon">
+          <mat-icon class="seen-icon" *ngIf="item.regUser == username">check</mat-icon>
+          <mat-icon class="seen-icon isSeen" *ngIf="item.isDelivered && item.regUser == username">check</mat-icon>
+        </span>
+        <span class="message__row__info__regtime" *ngIf="item.attachments.length < 3">{{item.regDate | formatTime}}</span>
+        <span class="message__row__info__regtime" style="color: #8b95a6;"
+          *ngIf="item.attachments.length > 3">{{item.regDate | formatTime}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="sharedService.showRightClickMenu && item == sharedService.selectedContextMenu "
+  [style.left]="sharedService.menuPosition.x" [style.top]="sharedService.menuPosition.y" class="right-click-menu">
+  <div ngbDropdownItem *ngIf="item.isSelf && this.chatListService.activeTab == 'Group'" (click)="openVisitLog()">
+    <mat-icon [class]="isSelf ? 'left' : 'right'">remove_red_eye</mat-icon>
+    <span>Visitors</span>
+  </div>
+  <div ngbDropdownItem (click)="forward(item)">
+    <mat-icon [class]="isSelf ? 'left' : 'right'">arrow_forward</mat-icon>
+    <span>Forward</span>
+  </div>
+  <div ngbDropdownItem (click)="replayMessage(item)">
+    <mat-icon [class]="isSelf ? 'left' : 'right'">reply</mat-icon>
+    <span>Reply</span>
+  </div>
+  <div ngbDropdownItem *ngIf="item.regUser == username" (click)="deleteMessage(item)">
+    <mat-icon [class]="isSelf ? 'left' : 'right'">delete_outline</mat-icon>
+    <span>Delete</span>
+  </div>
+  <div ngbDropdownItem (click)="copyMessage(item)">
+    <mat-icon [class]="isSelf ? 'left' : 'right'">file_copy</mat-icon>
+    <span>Copy</span>
+  </div>
+</div>
+<ng-template #deleteMessageModal let-deleteMessageModal>
+  <div class="modal-body" ngbAutofocus>
+    <div class="modal-text">
+      <span>
+        <span style="color: red">Delete</span> Selected Message?
+      </span>
+    </div>
+  </div>
+  <div class="modal-footer justify-content-center">
+    <div class="d-flex">
+      <button id="cancelSendButton" type="button" class="btn btn-cancel fw-bolder"
+        (click)="closeModal(deleteMessageModal)">No</button>
+      <button type="button" class="btn btn-confirm fw-bolder" (click)="deleteConfirmed()">Yes</button>
+    </div>
+  </div>
+</ng-template>

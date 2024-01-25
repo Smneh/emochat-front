@@ -1,0 +1,53 @@
+.red {
+  color: var(--red);
+}
+
+.green {
+  color: var(--green);
+}
+
+.yellow {
+  color: var(--yellow);
+}
+
+.gray {
+  color: var(--gray);
+}
+
+.white {
+  color: white;
+}
+
+:root {
+  --main-color: #6a4c93 !important;
+  --main-darker-color: #503676 !important;
+  --red: #85182a !important;
+  --main-light-color: #b392ac !important;
+  --dark-gray: #403d39;
+  --white: #e1e1e1;
+  --gray:#595959;
+  --light-gray: #8e8e8e;
+  --light-gray2: #a1a1a1;
+  --light-red: #de002b;
+  --light-red2: #de0007;
+  --light-red3: #ff5858;
+  --green:#3c7f6b;
+  --light-green: #00a959;
+  --yellow:#ff8500;
+  --bg-color:#222;
+  --bg-lighter: #333131;
+  --unread-color:#046d59;
+  --offline-user: #777777;
+  --online-user: #2d9060;
+  --selected: #4b4b4b;
+  --text-color: #b6b6b6;
+  --secondary-color: #ff55c6;
+  --font-name:'Source Sans Pro';
+  --font-size:18px;
+  --date-seperator: rgb(253 131 200 / 73%);
+  --reply-self-bg:#77678c;
+  --reply-self-border: #986ddc;
+  --reply-bg: #818181;
+  --reply-border: #b2b2b2;
+  --border-radius:5px;
+}

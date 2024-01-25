@@ -1,0 +1,7 @@
+<app-users [title]="'Select user'" [mark]="true" [multipleSelect]="true" (selectUser)="forwardUserList($event)">
+</app-users>
+<div class="footer">
+  <button class="btn" (click)="close()">Cancel</button>
+  <app-custom-button [text]="'Send'" (click)="forwardMessage()">
+  </app-custom-button>
+</div>

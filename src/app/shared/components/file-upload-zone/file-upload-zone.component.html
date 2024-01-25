@@ -1,0 +1,3 @@
+<button class="btn" (click)="onClick()">Upload</button>
+<input type="file" [id]="'hidden-upload-input'+ uniqeId" (change)="onFileChange($event)" [disabled]="loading"
+  [multiple]="multiple" name="upload-files-input" [accept]="accept" hidden />

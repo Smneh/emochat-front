@@ -1,0 +1,23 @@
+<div class="profile-header">
+  <custom-header [showHeader]="true">Change your profile info</custom-header>
+</div>
+<div class="profile-body">
+  <div class="profile-body__info">
+    <div class="profile-image-container">
+      <app-change-user-picture [username]="userService.userData.username"
+                                   [title]="userService.userData.fullname || userService.userData.fullName"
+                                   [currentProfile]="userService.userData.profilePictureId">
+      </app-change-user-picture>
+    </div>
+    <div class="profile-body__name">
+      <p>
+        <input *ngIf="canEditProfile" type="text" class="form-control" (keydown.enter)="updateProfileInfo()" [(ngModel)]="updatedFullname">
+        <input *ngIf="!canEditProfile" disabled type="text" class="form-control" [placeholder]="updatedFullname">
+      </p>
+    </div>
+    <div class="action-buttons">
+      <button ngbDropdownItem (click)="updateProfileInfo()" class="action-btn">Save</button>
+      <button ngbDropdownItem (click)="closeModal()" class="action-btn cancel">Cancel</button>
+    </div>
+  </div>
+</div>
